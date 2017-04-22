@@ -1,4 +1,4 @@
-package com.sagax.stairwell.servidor;
+package com.sagax.stairwell.server;
 
 import java.io.IOException;
 import java.net.URI;
@@ -7,10 +7,11 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
-
 public class Server {
 	
+	private static final String SERVER_ADDRESS = "http://localhost:8080/";
 	private static final String PACKAGE_RESOURCE = "com.sagax.stairwell.resource";
+			
 	public static void main(String[] args) throws IOException{
 		HttpServer server = inicializaServer();
 		System.out.println("Server running");
@@ -20,7 +21,7 @@ public class Server {
 
 	public static HttpServer inicializaServer() {
 		ResourceConfig config = new ResourceConfig().packages(PACKAGE_RESOURCE);
-		URI uri = URI.create("http://localhost:8080/");
+		URI uri = URI.create(SERVER_ADDRESS);
 		HttpServer server = GrizzlyHttpServerFactory.createHttpServer(uri, config);
 		return server;
 	}

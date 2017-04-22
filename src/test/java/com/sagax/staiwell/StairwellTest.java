@@ -16,7 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.sagax.stairwell.dto.StairwellDTO;
-import com.sagax.stairwell.servidor.Server;
+import com.sagax.stairwell.server.Server;
 
 import junit.framework.Assert;
 
