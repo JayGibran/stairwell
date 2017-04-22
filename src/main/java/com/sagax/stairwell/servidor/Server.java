@@ -8,8 +8,9 @@ import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
 
-public class Servidor {
+public class Server {
 	
+	private static final String PACKAGE_RESOURCE = "com.sagax.stairwell.resource";
 	public static void main(String[] args) throws IOException{
 		HttpServer server = inicializaServer();
 		System.out.println("Server running");
@@ -18,7 +19,7 @@ public class Servidor {
 	}
 
 	public static HttpServer inicializaServer() {
-		ResourceConfig config = new ResourceConfig().packages("com.sagax.stairwell.resource");
+		ResourceConfig config = new ResourceConfig().packages(PACKAGE_RESOURCE);
 		URI uri = URI.create("http://localhost:8080/");
 		HttpServer server = GrizzlyHttpServerFactory.createHttpServer(uri, config);
 		return server;

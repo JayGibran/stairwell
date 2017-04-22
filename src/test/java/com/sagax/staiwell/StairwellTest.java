@@ -16,7 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.sagax.stairwell.dto.StairwellDTO;
-import com.sagax.stairwell.servidor.Servidor;
+import com.sagax.stairwell.servidor.Server;
 
 import junit.framework.Assert;
 
@@ -29,7 +29,7 @@ public class StairwellTest {
 
 	@Before
 	public void startServidor() {
-		server = Servidor.inicializaServer();
+		server = Server.inicializaServer();
 		this.client = ClientBuilder.newClient();
 		target = client.target("http://localhost:8080");
 	}
