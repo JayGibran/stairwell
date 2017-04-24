@@ -1,6 +1,5 @@
 package com.sagax.staiwell;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,6 +26,8 @@ import junit.framework.Assert;
  */
 public class StairwellTest {
 
+	private static final String STAIRWELL_TOTAL_STRIDES = "/stairwell/totalStrides";
+	private static final String ADDRESS_SERVER = "http://localhost:8080";
 	private HttpServer server;
 	private Client client;
 	private WebTarget target;
@@ -35,7 +36,7 @@ public class StairwellTest {
 	public void startServidor() {
 		server = Server.inicializaServer();
 		this.client = ClientBuilder.newClient();
-		target = client.target("http://localhost:8080");
+		target = client.target(ADDRESS_SERVER);
 	}
 
 	@After
@@ -45,28 +46,29 @@ public class StairwellTest {
 
 	@Test
 	public void testTotalStride(){
-		List<Integer> list = new ArrayList<>();
-		list.addAll(Arrays.asList(17, 17));
-		String conteudo = requestTotalStride(list, 3);
+
+		String conteudo = requestTotalStride(Arrays.asList(17, 17), 3);
 		Assert.assertEquals("{total stride: 14}", conteudo);
+
+		conteudo = requestTotalStride(Arrays.asList(17, 17), 2);
+		Assert.assertEquals("{total stride: 20}", conteudo);
 		
-		list = new ArrayList<>();
-		list.add(17);
-		conteudo = requestTotalStride(list, 3);
+		conteudo = requestTotalStride(Arrays.asList(17), 3);
 		Assert.assertEquals("{total stride: 6}", conteudo);
 		
-		list = new ArrayList<>();
-		list.addAll(Arrays.asList(4, 9, 8, 11, 7, 20, 14));
-		conteudo = requestTotalStride(list, 2);
+		conteudo = requestTotalStride(Arrays.asList(20,20,20), 4);
+		Assert.assertEquals("{total stride: 19}", conteudo);
+		
+		conteudo = requestTotalStride(Arrays.asList(4, 9, 8, 11, 7, 20, 14), 2);
 		Assert.assertEquals("{total stride: 50}", conteudo);
 	}
 
-	private String requestTotalStride(List<Integer> list, int stepsPerStride) {
+	private String requestTotalStride(List<Integer> flights, int stepsPerStride) {
 		StairwellDTO model = new StairwellDTO();
-		model.setListFlight(list);
+		model.setListFlight(flights);
 		model.setStepsPerStride(stepsPerStride);
 		Entity<StairwellDTO>  entity = Entity.entity(model, MediaType.APPLICATION_JSON);
-		String conteudo = target.path("/stairwell/totalStrides").request().post(entity, String.class);
+		String conteudo = target.path(STAIRWELL_TOTAL_STRIDES).request().post(entity, String.class);
 		return conteudo;
 	}
 }
