@@ -3,6 +3,10 @@ package com.sagax.stairwell.util;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * @author JayGibran
+ *
+ */
 public class StairwellUtil {
 	
 	public static int calculateStrides(List<Integer> listFlight, int stepsPerStride) {

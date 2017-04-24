@@ -9,6 +9,10 @@ import javax.ws.rs.core.MediaType;
 import com.sagax.stairwell.dto.StairwellDTO;
 import com.sagax.stairwell.util.StairwellUtil;
 
+/**
+ * @author JayGibran
+ *
+ */
 @Path("stairwell")
 public class StairwellResource {
 	
@@ -17,8 +21,8 @@ public class StairwellResource {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)	
 	public String totalStrides(StairwellDTO dto){
-		int totalStride = StairwellUtil.calculateStrides(dto.getListFlight(), dto.getStepsPerStride());
-		String result = "{total stride: "+ totalStride+"}";
+		int totalStrides = StairwellUtil.calculateStrides(dto.getListFlight(), dto.getStepsPerStride());
+		String result = "{total stride: "+ totalStrides+"}";
 		
 		return result;
 	}

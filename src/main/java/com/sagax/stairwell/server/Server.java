@@ -7,6 +7,10 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
 
+/**
+ * @author JayGibran
+ *
+ */
 public class Server {
 	
 	private static final String SERVER_ADDRESS = "http://localhost:8080/";

@@ -21,6 +21,10 @@ import com.sagax.stairwell.server.Server;
 import junit.framework.Assert;
 
 
+/**
+ * @author JayGibran
+ *
+ */
 public class StairwellTest {
 
 	private HttpServer server;
